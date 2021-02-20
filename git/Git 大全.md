@@ -1,39 +1,13 @@
 ---
 title: Git大全
 date: 2021-01-05 00:00:00
-
-# 文章出处名称 #
-from: 灵溪驿站
-
-# 文章出处链接 #
-url: www.creekwater.cn
-
-# 文章作者名称 #
-author: creekwater
-
-# 文章作者签名 #
-about: 当生活心怀歹毒地将一切都搞成了黑色幽默，我顺水推舟把自己变成了一个受过高等教育的流氓。
-
-# 文章作者头像 #
-avatar: https://www.notes.worstone.cn/image/hexo.png
-
-# 是否开启评论 #
-comments: true
-
-# 文章标签 #
-tags: GIT
-
-# 文章分类 #
-categories: GIT
-
-# 文章摘要 #
-description: Git大全
-
-# 文章置顶 #
-sticky: 20000
+swiper: true
+swiperImg: '/medias/1.jpg'
+top: true
+tags: git
 ---
 
-## 一、Git GUI 客户端
+# Git GUI 客户端
 
 [Git 客户端下载（Windows）](https://www.oschina.net/p/git)
 
@@ -75,7 +49,7 @@ sticky: 20000
 
 
 
-## 二、Git IDE 插件
+# Git IDE 插件
 
 [Eclipse、Myeclipse 插件下载](https://gitee.com/oschina/eclipse-oscgit)
 
@@ -89,7 +63,7 @@ sticky: 20000
 
 [Sublime Text 插件下载](https://www.oschina.net/p/gitsavvy)
 
-## 三、Git 浏览器插件
+# Git 浏览器插件
 [Git 浏览器插件下载（Chrome、Firefox、Safari、Opera，支持码云和Github）](https://gitee.com/oschina/GitCodeTree)
 
 [Octotree 浏览器插件下载（Chrome，支持Github）](https://www.oschina.net/p/octotree)
@@ -97,7 +71,7 @@ sticky: 20000
 [GitLab-TreeView 浏览器插件下载（Chrome，支持GitLab）](https://www.oschina.net/p/gitlab-treeview)
 
 
-## 四、在线 Git 代码托管平台
+# 在线 Git 代码托管平台
 [码云 Gitee 官网](https://gitee.com/)
 
 [GitHub 官网](https://github.com/)
@@ -106,7 +80,7 @@ sticky: 20000
 
 [Bitbucket 官网](https://bitbucket.org/)
 
-## 五、搭建 Git 服务
+# 搭建 Git 服务
 
 [GitLab 开源版本下载](https://www.oschina.net/p/gitlab)
 
@@ -124,7 +98,7 @@ sticky: 20000
 
 [Gidder开源版本下载](https://www.oschina.net/p/gidder)
 
-## 六、Git 教程
+# Git 教程
 
 [廖雪峰 | Git教程](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
 
@@ -148,11 +122,11 @@ sticky: 20000
 
 [Lufficc | Git教程](https://lufficc.com/blog/the-core-conception-of-git#版本控制系统)
 
-## 七、Git 常用命令
+# Git 常用命令
 
 ### 仓库
 
-```
+```shell
 # 在当前目录新建一个Git代码库
 $ git init
 
@@ -165,7 +139,7 @@ $ git clone [url]
 
 ### 配置
 
-```
+```shell
 # 显示当前的Git配置
 $ git config --list
 
@@ -179,7 +153,7 @@ $ git config [--global] user.email "[email address]"
 
 ### 增加/删除文件
 
-```
+```shell
 # 添加指定文件到暂存区
 $ git add [file1] [file2] ...
 
@@ -205,7 +179,7 @@ $ git mv [file-original] [file-renamed]
 
 ### 代码提交
 
-```
+```shell
 # 提交暂存区到仓库区
 $ git commit -m [message]
 
@@ -228,7 +202,7 @@ $ git commit --amend [file1] [file2] ...
 
 ### 分支
 
-```
+```shell
 # 列出所有本地分支
 $ git branch
 
@@ -275,7 +249,7 @@ $ git branch -dr [remote/branch]
 
 ### 标签
 
-```
+```shell
 # 列出所有tag
 $ git tag
 
@@ -306,7 +280,7 @@ $ git checkout -b [branch] [tag]
 
 ### 查看信息
 
-```
+```shell
 # 显示有变更的文件
 $ git status
 
@@ -371,7 +345,7 @@ $ git reflog
 
 ### 远程同步
 
-```
+```shell
 # 下载远程仓库的所有变动
 $ git fetch [remote]
 
@@ -399,7 +373,7 @@ $ git push [remote] --all
 
 ### 撤销
 
-```
+```shell
 # 恢复暂存区的指定文件到工作区
 $ git checkout [file]
 
@@ -435,9 +409,42 @@ $ git stash pop
 
 ### 其他
 
-```
+```shell
 # 生成一个可供发布的压缩包
 $ git archive
 ```
 
-以上常用命令来自阮一峰老师的博客文章《常用 Git 命令清单》，感谢阮老师！
+### 仓库迁移
+```shell
+# 删除原有的git地址
+git remote rm origin
+
+# 添加新地址
+git remote add origin new_rep.git
+
+# 提交代码
+git push -u origin master
+```
+
+
+
+# 常见问题
+
+### git 提交报错 error: RPC failed; curl 92 HTTP/2 stream 0 was not closed cleanly: PROTOCOL_ERROR (err 1)
+
+```shell
+error: RPC 失败。curl 92 HTTP/2 stream 0 was not closed cleanly: CANCEL (err 8)
+send-pack: unexpected disconnect while reading sideband packet
+```
+原因：http2本身的bug
+
+解决方法：
+
+①替换掉git的http的版本
+
+```shell
+git config --global http.version HTTP/1.1
+```
+
+②更改git的克隆方式http为ssh，使用ssh进行代码的下载和提交
+
