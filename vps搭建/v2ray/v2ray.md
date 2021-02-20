@@ -28,6 +28,9 @@ categories: 科学上网
 
 # 文章摘要 #
 description: 使用v2ray协议进行科学上网
+
+# 文章置顶 #
+sticky: 10000
 ---
 
 
